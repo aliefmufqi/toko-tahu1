@@ -1,5 +1,10 @@
 {
-  "php": {
-    "version": "8.3"
-  }
+  "providers": [
+    {
+      "name": "php",
+      "options": {
+        "phpVersion": "8.3"
+      }
+    }
+  ]
 }
