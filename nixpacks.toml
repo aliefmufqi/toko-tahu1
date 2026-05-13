@@ -1,0 +1,14 @@
+[phases.setup]
+nixPkgs = ["php83", "php83Extensions.pdo_mysql", "php83Extensions.mbstring", "php83Extensions.xml", "php83Extensions.gd", "php83Extensions.curl", "php83Extensions.zip", "php83Extensions.bcmath", "php83Extensions.tokenizer", "php83Extensions.fileinfo", "php83Extensions.intl", "composer"]
+
+[phases.build]
+cmds = [
+  "composer install --no-dev --optimize-autoloader --no-interaction",
+  "mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache/data bootstrap/cache",
+  "chmod -R 775 storage bootstrap/cache",
+  "php artisan config:cache",
+  "php artisan route:cache"
+]
+
+[start]
+cmd = "php artisan storage:link --quiet; php artisan migrate --force --quiet; php -S 0.0.0.0:$PORT -t public"
