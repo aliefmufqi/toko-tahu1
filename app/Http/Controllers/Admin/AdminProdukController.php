@@ -1,7 +1,9 @@
 <?php
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Models\{Produk, Kategori};
+use App\Helpers\UploadHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -27,18 +29,24 @@ class AdminProdukController extends Controller
             'harga'       => 'required|numeric|min:0',
             'stok'        => 'required|integer|min:0',
             'deskripsi'   => 'required',
-            'gambar'      => 'nullable|image|max:2048',
         ]);
 
         $data = $request->except('gambar');
-        $data['slug'] = Str::slug($request->nama) . '-' . Str::random(5);
+        $data['slug']  = Str::slug($request->nama) . '-' . Str::random(5);
+        $data['aktif'] = $request->has('aktif') ? 1 : 0;
 
         if ($request->hasFile('gambar')) {
-            $data['gambar'] = $request->file('gambar')->store('produk', 'public');
+            $data['gambar'] = UploadHelper::upload($request->file('gambar'), 'produk');
         }
 
         Produk::create($data);
-        return redirect()->route('admin.produk.index')->with('sukses', 'Produk berhasil ditambahkan!');
+        return redirect()->route('admin.produk.index')
+            ->with('sukses', 'Produk berhasil ditambahkan!');
+    }
+
+    public function show(Produk $produk)
+    {
+        return redirect()->route('admin.produk.edit', $produk);
     }
 
     public function edit(Produk $produk)
@@ -50,19 +58,22 @@ class AdminProdukController extends Controller
     public function update(Request $request, Produk $produk)
     {
         $data = $request->except('gambar');
+        $data['aktif'] = $request->has('aktif') ? 1 : 0;
+
         if ($request->hasFile('gambar')) {
-            $data['gambar'] = $request->file('gambar')->store('produk', 'public');
+            $data['gambar'] = UploadHelper::upload($request->file('gambar'), 'produk');
         }
+
         $produk->update($data);
-        return redirect()->route('admin.produk.index')->with('sukses', 'Produk berhasil diperbarui!');
+        return redirect()->route('admin.produk.index')
+            ->with('sukses', 'Produk berhasil diperbarui!');
     }
 
     public function destroy(Produk $produk)
-{
-    \App\Models\DetailPesanan::where('produk_id', $produk->id)
-        ->update(['produk_id' => null]);
-
-    $produk->delete();
-    return back()->with('sukses', 'Produk berhasil dihapus!');
-}
+    {
+        \App\Models\DetailPesanan::where('produk_id', $produk->id)
+            ->update(['produk_id' => null]);
+        $produk->delete();
+        return back()->with('sukses', 'Produk berhasil dihapus!');
+    }
 }

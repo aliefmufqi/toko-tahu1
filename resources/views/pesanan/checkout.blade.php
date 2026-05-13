@@ -106,7 +106,7 @@
             <div class="flex items-center gap-3">
               <div class="w-12 h-12 rounded-xl flex-shrink-0 bg-primary-fixed flex items-center justify-center overflow-hidden">
                 @if($item['gambar'])
-                  <img src="{{ Storage::url($item['gambar']) }}" class="w-full h-full object-cover">
+                  <img src="{{ \App\Helpers\UploadHelper::url($item['gambar']) }}" class="w-full h-full object-cover">
                 @else
                   <span class="text-xl">🧀</span>
                 @endif

@@ -19,7 +19,7 @@
     <div class="relative">
       <div class="aspect-square rounded-3xl overflow-hidden bg-orange-50 flex items-center justify-center shadow-xl">
         @if($produk->gambar)
-          <img src="{{ Storage::url($produk->gambar) }}" class="w-full h-full object-cover" alt="{{ $produk->nama }}">
+          <img src="{{ \App\Helpers\UploadHelper::url($produk->gambar) }}" class="w-full h-full object-cover" alt="{{ $produk->nama }}">
         @else
           <span class="text-9xl">🧀</span>
         @endif

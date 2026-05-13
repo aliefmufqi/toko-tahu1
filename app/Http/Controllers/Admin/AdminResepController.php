@@ -34,8 +34,8 @@ class AdminResepController extends Controller
 
         $gambar = null;
         if ($request->hasFile('gambar')) {
-            $gambar = $request->file('gambar')->store('resep', 'public');
-        }
+    $data['gambar'] = UploadHelper::upload($request->file('gambar'), 'resep');
+}
 
         Resep::create([
             'nama'        => $request->nama,
@@ -93,9 +93,9 @@ class AdminResepController extends Controller
             'aktif'       => $request->has('aktif'),
         ];
 
-        if ($request->hasFile('gambar')) {
-            $data['gambar'] = $request->file('gambar')->store('resep', 'public');
-        }
+    if ($request->hasFile('gambar')) {
+    $data['gambar'] = UploadHelper::upload($request->file('gambar'), 'resep');
+    }
 
         $resep->update($data);
 

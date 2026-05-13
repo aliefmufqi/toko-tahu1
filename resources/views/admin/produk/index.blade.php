@@ -42,7 +42,7 @@
             <div class="flex items-center gap-4">
               <div class="w-14 h-14 rounded-xl overflow-hidden bg-orange-50 flex-shrink-0 flex items-center justify-center">
                 @if($produk->gambar)
-                  <img src="{{ Storage::url($produk->gambar) }}" class="w-full h-full object-cover" alt="{{ $produk->nama }}">
+                  <img src="{{ \App\Helpers\UploadHelper::url($produk->gambar) }}" class="w-full h-full object-cover" alt="{{ $produk->nama }}">
                 @else
                   <span class="text-2xl">🧀</span>
                 @endif

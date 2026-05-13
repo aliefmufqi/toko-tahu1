@@ -19,7 +19,7 @@
       @if($heroImage)
       <div style="margin-bottom:16px;">
         <p style="font-size:11px; font-weight:700; color:#9ca3af; text-transform:uppercase; margin-bottom:8px;">Foto Saat Ini</p>
-        <img src="{{ Storage::url($heroImage) }}" style="width:100%; height:200px; object-fit:cover; border-radius:12px; border:1px solid #f3f4f6;">
+        <img src="{{ \App\Helpers\UploadHelper::url($heroImage)}}" style="width:100%; height:200px; object-fit:cover; border-radius:12px; border:1px solid #f3f4f6;">
       </div>
       @endif
 

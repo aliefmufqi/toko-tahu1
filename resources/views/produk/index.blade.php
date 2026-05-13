@@ -33,7 +33,7 @@
     <div class="bg-white rounded-3xl shadow-sm border border-outline-variant group hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col">
       <a href="{{ route('produk.show', $produk->slug) }}" class="relative overflow-hidden rounded-t-3xl aspect-square bg-primary-fixed flex items-center justify-center">
         @if($produk->gambar)
-          <img src="{{ Storage::url($produk->gambar) }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="{{ $produk->nama }}">
+          <img src="{{ \App\Helpers\UploadHelper::url($produk->gambar) }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="{{ $produk->nama }}">
         @else
           <span class="text-6xl">🧀</span>
         @endif

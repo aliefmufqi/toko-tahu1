@@ -28,7 +28,7 @@
         {{-- Gambar --}}
         <div class="w-32 h-32 rounded-lg overflow-hidden flex-shrink-0 bg-primary-fixed flex items-center justify-center">
           @if($item['gambar'])
-            <img src="{{ Storage::url($item['gambar']) }}" class="w-full h-full object-cover" alt="{{ $item['nama'] }}">
+            <img src="{{ \App\Helpers\UploadHelper::url($item['gambar']) }}" class="w-full h-full object-cover" alt="{{ $item['nama'] }}">
           @else
             <span class="text-5xl">🧀</span>
           @endif

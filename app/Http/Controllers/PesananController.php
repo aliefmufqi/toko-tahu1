@@ -5,6 +5,7 @@ use App\Models\{Pesanan, DetailPesanan, Produk, User};
 use App\Notifications\PesananBaruNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Helpers\UploadHelper;
 
 class PesananController extends Controller
 {
@@ -97,29 +98,29 @@ class PesananController extends Controller
         return view('pesanan.show', compact('pesanan'));
     }
 
-    public function bayar(Request $request, $kode)
-    {
-        $request->validate([
-            'bukti_transfer' => 'required|image|max:2048',
-        ]);
 
-        $pesanan = Pesanan::where('kode_pesanan', $kode)
-            ->where('user_id', auth()->id())
-            ->firstOrFail();
 
-        $path = $request->file('bukti_transfer')->store('pembayaran', 'public');
+public function bayar(Request $request, $kode)
+{
+    $request->validate(['bukti_transfer' => 'required|image|max:2048']);
 
-        \App\Models\Pembayaran::updateOrCreate(
-            ['pesanan_id' => $pesanan->id],
-            [
-                'metode_bayar'   => 'transfer',
-                'jumlah_bayar'   => $pesanan->total_harga,
-                'bukti_transfer' => $path,
-                'status'         => 'menunggu',
-                'tanggal_bayar'  => now(),
-            ]
-        );
+    $pesanan = Pesanan::where('kode_pesanan', $kode)
+        ->where('user_id', auth()->id())
+        ->firstOrFail();
 
-        return back()->with('sukses', 'Bukti pembayaran berhasil dikirim! Menunggu konfirmasi admin.');
-    }
+    $path = UploadHelper::upload($request->file('bukti_transfer'), 'pembayaran');
+
+    \App\Models\Pembayaran::updateOrCreate(
+        ['pesanan_id' => $pesanan->id],
+        [
+            'metode_bayar'   => 'transfer',
+            'jumlah_bayar'   => $pesanan->total_harga,
+            'bukti_transfer' => $path,
+            'status'         => 'menunggu',
+            'tanggal_bayar'  => now(),
+        ]
+    );
+
+    return back()->with('sukses', 'Bukti pembayaran berhasil dikirim!');
+}
 }

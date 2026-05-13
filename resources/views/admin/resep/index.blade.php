@@ -36,7 +36,7 @@
             <div style="display:flex; align-items:center; gap:12px;">
               <div style="width:48px; height:48px; border-radius:12px; background:#fff7ed; display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; overflow:hidden;">
                 @if($resep->gambar)
-                  <img src="{{ Storage::url($resep->gambar) }}" style="width:100%; height:100%; object-fit:cover;">
+                  <img src="{{ \App\Helpers\UploadHelper::url($resep->gambar) }}" style="width:100%; height:100%; object-fit:cover;">
                 @else
                   {{ $resep->emoji }}
                 @endif

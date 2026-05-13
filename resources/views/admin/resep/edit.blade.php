@@ -116,7 +116,7 @@
       <div style="background:white; border-radius:16px; border:1px solid #f3f4f6; padding:24px;">
         <h3 style="font-size:15px; font-weight:800; color:#1f2937; margin:0 0 16px;">Foto Resep</h3>
         @if($resep->gambar)
-        <img src="{{ Storage::url($resep->gambar) }}" style="width:100%; border-radius:12px; max-height:160px; object-fit:cover; margin-bottom:12px;">
+        <img src="{{ \App\Helpers\UploadHelper::url($resep->gambar) }}" style="width:100%; border-radius:12px; max-height:160px; object-fit:cover; margin-bottom:12px;">
         @endif
         <div style="border:2px dashed #ffe4cc; border-radius:12px; padding:20px; text-align:center; cursor:pointer;" onclick="document.getElementById('gambar-input').click()">
           <span class="material-symbols-outlined" style="font-size:28px; color:#FF5C00; display:block; margin-bottom:6px;">cloud_upload</span>

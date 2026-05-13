@@ -32,7 +32,7 @@
       @if($heroImage)
       <div class="w-full max-w-lg mx-auto" style="transform: rotate(7deg);">
         <div class="relative rounded-3xl overflow-hidden shadow-2xl" style="aspect-ratio:1/1;">
-          <img src="{{ Storage::url($heroImage) }}" class="w-full h-full object-cover object-center">
+          <img src="{{ \App\Helpers\UploadHelper::url($heroImage)}}" class="w-full h-full object-cover object-center">
         </div>
       </div>
       @else
@@ -90,7 +90,7 @@
     <div class="md:col-span-2 md:row-span-2 bg-white rounded-3xl p-6 shadow-sm border border-outline-variant flex flex-col group hover:shadow-xl transition-all">
       <div class="relative overflow-hidden rounded-2xl mb-6 aspect-video bg-primary-fixed flex items-center justify-center">
         @if($featured->gambar)
-          <img src="{{ Storage::url($featured->gambar) }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="{{ $featured->nama }}">
+          <img src="{{ \App\Helpers\UploadHelper::url($featured->gambar) }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="{{ $featured->nama }}">
         @else
           <span class="text-8xl">🧀</span>
         @endif
@@ -122,7 +122,7 @@
     <div class="bg-white rounded-3xl p-4 shadow-sm border border-outline-variant group hover:shadow-lg transition-all">
       <div class="relative overflow-hidden rounded-xl mb-4 aspect-square bg-primary-fixed flex items-center justify-center">
         @if($produk->gambar)
-          <img src="{{ Storage::url($produk->gambar) }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform" alt="{{ $produk->nama }}">
+          <img src="{{ \App\Helpers\UploadHelper::url($produk->gambar) }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform" alt="{{ $produk->nama }}">
         @else
           <span class="text-5xl">🧀</span>
         @endif

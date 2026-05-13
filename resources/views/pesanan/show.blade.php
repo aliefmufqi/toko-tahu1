@@ -53,7 +53,7 @@
             {{-- Gambar Produk --}}
             <div class="w-14 h-14 rounded-2xl overflow-hidden bg-orange-100 flex items-center justify-center flex-shrink-0">
               @if($detail->produk && $detail->produk->gambar)
-                <img src="{{ Storage::url($detail->produk->gambar) }}" class="w-full h-full object-cover" alt="{{ $detail->produk->nama ?? '' }}">
+                <img src="{{ \App\Helpers\UploadHelper::url($detail->produk->gambar) }}" class="w-full h-full object-cover" alt="{{ $detail->produk->nama ?? '' }}">
               @else
                 <span class="text-2xl">🧀</span>
               @endif
@@ -173,7 +173,7 @@
             <span class="material-symbols-outlined text-4xl text-yellow-500 mb-3 block" style="font-variation-settings: 'FILL' 1">pending</span>
             <p class="font-bold mb-1">Bukti Transfer Dikirim!</p>
             <p class="text-xs text-gray-500 mb-4">Menunggu konfirmasi admin. Biasanya 1-2 jam.</p>
-            <img src="{{ Storage::url($pesanan->pembayaran->bukti_transfer) }}"
+            <img src="{{  }}"
               class="mx-auto w-36 h-36 object-cover rounded-2xl border">
           </div>
 

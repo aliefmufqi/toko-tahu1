@@ -63,7 +63,7 @@
           {{-- Gambar --}}
           <div style="position:relative; height:170px; background:linear-gradient(135deg, #fff7ed, #ffe4cc); display:flex; align-items:center; justify-content:center; overflow:hidden;">
             @if($resep->gambar)
-              <img src="{{ Storage::url($resep->gambar) }}" style="width:100%; height:100%; object-fit:cover;">
+              <img src="{{ \App\Helpers\UploadHelper::url($resep->gambar) }}" style="width:100%; height:100%; object-fit:cover;">
             @else
               <span style="font-size:72px;">{{ $resep->emoji }}</span>
             @endif

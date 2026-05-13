@@ -88,7 +88,7 @@
           @if($produk->gambar)
             <div class="mb-4">
               <p class="text-sm text-gray-600 mb-2">Gambar saat ini:</p>
-              <img src="{{ Storage::url($produk->gambar) }}" alt="{{ $produk->nama }}" class="max-h-40 rounded-lg border border-gray-200">
+              <img src="{{ \App\Helpers\UploadHelper::url($produk->gambar) }}" alt="{{ $produk->nama }}" class="max-h-40 rounded-lg border border-gray-200">
             </div>
           @endif
 

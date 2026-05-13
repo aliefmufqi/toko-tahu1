@@ -13,7 +13,7 @@
           {{-- Gambar & Info --}}
                   <div style="position:relative; height:320px; background:linear-gradient(135deg, #fff7ed, #ffe4cc); border-radius:24px; display:flex; align-items:center; justify-content:center; margin-bottom:20px; overflow:hidden;">
                 @if($resep->gambar)
-                  <img src="{{ Storage::url($resep->gambar) }}" style="width:100%; height:100%; object-fit:cover; border-radius:24px;">
+                  <img src="{{ \App\Helpers\UploadHelper::url($resep->gambar) }}" style="width:100%; height:100%; object-fit:cover; border-radius:24px;">
                 @else
                   <span style="font-size:140px;">{{ $resep->emoji }}</span>
                 @endif
