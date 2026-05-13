@@ -1,17 +1,5 @@
 {
   "php": {
     "version": "8.3"
-  },
-  "build": {
-    "commands": [
-      "composer install --no-dev --optimize-autoloader --no-interaction",
-      "mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache/data bootstrap/cache",
-      "chmod -R 775 storage bootstrap/cache",
-      "php artisan config:cache",
-      "php artisan route:cache"
-    ]
-  },
-  "deploy": {
-    "startCommand": "php artisan storage:link --quiet; php artisan migrate --force --quiet; php -S 0.0.0.0:$PORT -t public"
   }
 }
