@@ -1,5 +1,17 @@
 {
+<<<<<<< HEAD
   "packages": {
     "php": "8.3.0"
   }
 }
+=======
+  "$schema": "https://schema.railpack.com",
+  "provider": "php",
+  "packages": {
+    "php": "8.3"
+  },
+  "deploy": {
+    "startCommand": "php artisan storage:link --quiet && php artisan migrate --force --quiet && php artisan serve --host=0.0.0.0 --port=$PORT"
+  }
+}
+>>>>>>> 9673d81da064c480c18ba6584f4bb5c5e12453b2
